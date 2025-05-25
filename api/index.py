@@ -28,4 +28,4 @@ def search(request: Request):
     marks_data = {student['name']: student['marks'] for student in data}
     marks_list = [marks_data[name] for name in names_required]
 
-    return{"marks": marks_data}
+    return{"marks": marks_list}

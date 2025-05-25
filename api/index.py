@@ -27,4 +27,4 @@ def search(request: Request):
 
     marks_list = [data.get(name, None) for name in names_required]
 
-    response = json.dumps({"marks": marks_list})
+    return{"marks": marks_list}

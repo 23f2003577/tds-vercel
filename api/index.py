@@ -21,5 +21,6 @@ def search(request: Request):
 
     for param in request.query_params.keys():
         parameters.append(param)
+        print(param)
 
-    return {"parameters": parameters}
+    return {"parameters": parameters, "success": True, "message": "Search parameters received."}

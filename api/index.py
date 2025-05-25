@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+import json
 
 app = FastAPI()
 
@@ -17,10 +18,13 @@ def index():
 
 @app.get("/api")
 def search(request: Request):
-    parameters = list()
+    
+    names_required = list(request.query_params.getlist("name"))
+    marks_list = []
+    
+    with open("q-vercel-python.json", "r") as file:
+        data = json.load(file)
 
-    for param in request.query_params.keys():
-        parameters.append(param)
-        print(param)
+    marks_list = [data.get(name, None) for name in names_required]
 
-    return {"parameters": parameters, "success": True, "message": "Search parameters received."}
+    response = json.dumps({"marks": marks_list})

@@ -22,10 +22,10 @@ def search(request: Request):
     names_required = list(request.query_params.getlist("name"))
     marks_list = []
     
-    '''with open("q-vercel-python.json", "r") as file:
+    with open("q-vercel-python.json", "r") as file:
         data = json.load(file)
+    
+    marks_data = {student['name']: student['marks'] for student in data}
+    '''marks_list = [data.get(name, None) for name in names_required]'''
 
-    marks_list = [data.get(name, None) for name in names_required]
-
-    return{"marks": marks_list}'''
-    return{"names": names_required}
+    return{"marks": marks_data}

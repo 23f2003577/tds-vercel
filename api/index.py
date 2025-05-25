@@ -26,6 +26,6 @@ def search(request: Request):
         data = json.load(file)
     
     marks_data = {student['name']: student['marks'] for student in data}
-    '''marks_list = [data.get(name, None) for name in names_required]'''
+    marks_list = [marks_data[name] for name in names_required]
 
     return{"marks": marks_data}
